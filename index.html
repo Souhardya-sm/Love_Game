@@ -89,6 +89,25 @@ button{
     50%{transform:scale(1.2);}
     100%{transform:scale(1);}
 }
+.falling{
+    position:fixed;
+    top:-50px;
+    font-size:35px;
+    animation:fall 4s linear forwards;
+    pointer-events:none;
+    z-index:9999;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
 </style>
 </head>
 
@@ -104,29 +123,17 @@ I know today might be a little tough.<br>
 Let's play a tiny game.
 </p>
 
-<div id="messageBox" class="message">
-Collect all 10 hearts.
-</div>
-
-<div id="heartContainer" class="hearts"></div>
-
 <div id="rewardSection" class="hidden">
 <h2>🎁 Rewards Unlocked</h2>
 
 <div class="reward">
-🍫 Emergency Chocolate Voucher
-</div>
-
-<div class="reward">
-🤗 Unlimited Hugs (Valid Forever)
-</div>
-
-<div class="reward">
-💆 Free Massage Coupon
+    <button onclick="hugShower()">
+        🤗 Unlimited Hugs
+    </button>
 </div>
 
 <button onclick="startBossFight()">
-Fight The Period Monster 👾
+Fight The Monster 👾
 </button>
 </div>
 
@@ -152,7 +159,7 @@ ummmm ektu na bhaloi pete byatha hoi jotota ami jani.<br>
 ektu rest neee, besi kore jol khabi.<br>
 Ami sob somoy achi tor sathe sonaaa.<br><br>
 
-Rest.<br>
+😘😘😘.<br>
 Muaaaaaaaaahhhhhhhhh😘😘😘.<br>
 hmmm ekhon samna samni ador ta korte parchi naa but ekdin to hobei.<br><br>
 
@@ -240,6 +247,42 @@ function attack(){
     }
 }
 
+function hugShower(){
+
+    const emojis = [
+        "🤗","❤️","😘","💕","🥰",
+        "💖","💘","💞","💓","💝"
+    ];
+
+    for(let i=0;i<60;i++){
+
+        const emoji = document.createElement("div");
+
+        emoji.className = "falling";
+
+        emoji.innerHTML =
+            emojis[Math.floor(Math.random()*emojis.length)];
+
+        emoji.style.left =
+            Math.random()*100 + "vw";
+
+        emoji.style.animationDuration =
+            (Math.random()*2 + 3) + "s";
+
+        document.body.appendChild(emoji);
+
+        setTimeout(()=>{
+            emoji.remove();
+        },5000);
+    }
+
+    setTimeout(()=>{
+
+        document.getElementById("messageBox").innerHTML =
+        "🤗 You have successfully redeemed unlimited hugs from Bubu ❤️😘";
+
+    },500);
+}
 function hug(){
     document.getElementById("hugArea").innerHTML=
     "<div id='hug'>🤗❤️🤗</div>";
