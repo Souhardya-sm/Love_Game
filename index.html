@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Gubluu Sonaaa ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ffd6e7,#e6d5ff);
+    min-height:100vh;
+    text-align:center;
+    color:#333;
+}
+
+.container{
+    padding:30px;
+}
+
+h1{
+    margin-top:20px;
+}
+
+.hearts{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-top:30px;
+}
+
+.heart{
+    font-size:40px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.heart:hover{
+    transform:scale(1.3);
+}
+
+.message{
+    background:white;
+    max-width:500px;
+    margin:20px auto;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.hidden{
+    display:none;
+}
+
+button{
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    background:#ff7eb6;
+    color:white;
+    margin:10px;
+}
+
+.reward{
+    background:white;
+    margin:15px auto;
+    max-width:400px;
+    padding:15px;
+    border-radius:15px;
+}
+
+#monster{
+    font-size:100px;
+}
+
+#hug{
+    font-size:120px;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💖Gubluu sonaa's Love quest</h1>
+
+<p>
+Hey beautiful ❤️<br>
+I know today might be a little tough.<br>
+Let's play a tiny game.
+</p>
+
+<div id="messageBox" class="message">
+Collect all 10 hearts.
+</div>
+
+<div id="heartContainer" class="hearts"></div>
+
+<div id="rewardSection" class="hidden">
+<h2>🎁 Rewards Unlocked</h2>
+
+<div class="reward">
+🍫 Emergency Chocolate Voucher
+</div>
+
+<div class="reward">
+🤗 Unlimited Hugs (Valid Forever)
+</div>
+
+<div class="reward">
+💆 Free Massage Coupon
+</div>
+
+<button onclick="startBossFight()">
+Fight The Period Monster 👾
+</button>
+</div>
+
+<div id="bossSection" class="hidden">
+<h2>Final Boss</h2>
+
+<div id="monster">👾</div>
+
+<p>Monster HP: <span id="hp">100</span></p>
+
+<button onclick="attack()">
+❤️ Love Attack
+</button>
+</div>
+
+<div id="ending" class="hidden">
+<h2>🌸 You Won!</h2>
+
+<p>
+Gubluu Sonaaa,<br><br>
+
+ummmm ektu na bhaloi pete byatha hoi jotota ami jani.<br>
+ektu rest neee, besi kore jol khabi.<br>
+Ami sob somoy achi tor sathe sonaaa.<br><br>
+
+Rest.<br>
+Muaaaaaaaaahhhhhhhhh😘😘😘.<br>
+hmmm ekhon samna samni ador ta korte parchi naa but ekdin to hobei.<br><br>
+
+Kuchupuchu😘.<br><br>
+
+❤️ Tor, Sudhu tor Bubu
+</p>
+
+<button onclick="hug()">
+Receive Virtual Hug
+</button>
+
+<div id="hugArea"></div>
+</div>
+
+</div>
+
+<script>
+
+const messages = [
+"Muuuuuuuaaaaaaahhhhhhhhhhh😘😘😘😘 ❤️",
+"Gubluuuuu sonaaaa amar 😊",
+"Kuchupuchu 💕",
+"Ektu mathai hat buliye ador😘🤗 ",
+"Ekdom tightttt ekta hug 🤗",
+"Jol kha besi besi koree",
+"Muaaaaaaaaahhhhhhhhh😘😘😘 ❤️",
+"gatta khabi? 😜",
+"Love you darlinggggg 🥰",
+"Muaahhhhhhhhhh khubbb bhalo basi puchu 😘😘"
+];
+
+let collected = 0;
+
+const heartContainer = document.getElementById("heartContainer");
+
+for(let i=0;i<10;i++){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+
+    heart.onclick=function(){
+
+        document.getElementById("messageBox").innerHTML=
+        messages[i];
+
+        heart.style.visibility="hidden";
+
+        collected++;
+
+        if(collected===10){
+            document.getElementById("rewardSection")
+            .classList.remove("hidden");
+
+            document.getElementById("messageBox")
+            .innerHTML="All hearts collected! 🎉";
+        }
+    };
+
+    heartContainer.appendChild(heart);
+}
+
+function startBossFight(){
+    document.getElementById("bossSection")
+    .classList.remove("hidden");
+}
+
+let hp=100;
+
+function attack(){
+
+    hp-=10;
+
+    if(hp<0) hp=0;
+
+    document.getElementById("hp").innerText=hp;
+
+    if(hp===0){
+
+        document.getElementById("bossSection")
+        .classList.add("hidden");
+
+        document.getElementById("ending")
+        .classList.remove("hidden");
+    }
+}
+
+function hug(){
+    document.getElementById("hugArea").innerHTML=
+    "<div id='hug'>🤗❤️🤗</div>";
+}
+
+</script>
+
+</body>
+</html>
